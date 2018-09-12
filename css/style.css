@@ -1,0 +1,55 @@
+.container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrow.left {
+    left: 0;
+}
+
+.arrow.right {
+    right: 0;
+}
+
+.arrow {
+    background-color: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    display: inline-block;
+    height: 40px;
+    padding: 10px;
+    margin-top: calc((600px) / 2 - 40px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 200ms ease-in-out;
+}
+
+.arrow.left:hover {
+    padding-left: 5px;
+    padding-right: 15px;
+}
+
+.arrow.right:hover {
+    padding-right: 5px;
+    padding-left: 15px;
+}
+
+.arrow img {
+    height: 30px;
+}
+
+.slider-container {
+    height: 600px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    /* align-items: center; */
+}
+
+.slider-container img {
+    min-width: 100%;
+}
