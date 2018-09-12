@@ -1,8 +1,6 @@
 
 var container = $(".slider-container");
 var contWidth = $(container)[0].getBoundingClientRect().width;
-var next = $("#next");
-var prev = $("#prev");
 var currentIndex = 0;
 
 var imageName = "images/img-";
