@@ -188,7 +188,6 @@ function addStyles() {
 }
 
 $(document).ready(function() {
-<<<<<<< HEAD
     addImages();
     if (showDots) {
         sliderDots();
@@ -196,7 +195,3 @@ $(document).ready(function() {
 
     addStyles();
 });
-=======
-    addImages(1, 6);
-});
->>>>>>> 3108526d4e64b3175b778694fbb2904b628df693
