@@ -46,15 +46,20 @@ function slideToIndex(index) {
         scrollLeft: contWidth * index
     }, slideSpeed);
 
-    $(".dot").css({
-         "background-color": "rgba(255, 255, 255, .7)"
-        ,"transform": "translateY(0)"
-    });
+    changeDotLocation(index);
+   
+}
 
-    $($(".dot")[index]).css({
-         "background-color": "#fff"
-        ,"transform": "translateY(-4px)"
-    })
+function changeDotLocation(index) {
+    $(".dot").css({
+        "background-color": "rgba(255, 255, 255, .7)"
+       ,"transform": "translateY(0)"
+   });
+
+   $($(".dot")[index]).css({
+        "background-color": "#fff"
+       ,"transform": "translateY(-4px)"
+   });
 }
 
 function nextImage() {
@@ -65,6 +70,8 @@ function nextImage() {
     container.animate({
         scrollLeft: contWidth * ++currentIndex
     }, slideSpeed);
+
+    changeDotLocation(currentIndex);
 }
 
 function prevImage() {
@@ -75,6 +82,8 @@ function prevImage() {
     container.animate({
         scrollLeft: contWidth * --currentIndex
     }, slideSpeed);
+
+    changeDotLocation(currentIndex);
 }
 
 function addImages() {
