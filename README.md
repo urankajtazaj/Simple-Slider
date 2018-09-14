@@ -31,7 +31,7 @@ slider.PauseSlideOnMouseEntered = false;  // When mouse entered pause the slide 
 slider.DotsVisible = true;                // Show dots at the bottom of the slide :bool
 slider.ArrowsVisible = true;              // Show/hide arrows :bool
 
-// Set the slider images
+// Set the slider images path
 slider.images = [
     "images/img-1.jpeg",
     "images/img-3.jpeg",
