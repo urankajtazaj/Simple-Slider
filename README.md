@@ -1,5 +1,6 @@
 # SimpleSlider
-A simple css/js slider
+A simple slider javascript library
+#
 
 ### Getting started
 Create a html template as below
@@ -16,7 +17,7 @@ Create a html template as below
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/slider.js"></script>
 ```
-
+#
 ### How to use
 ```javascript
 // Create a new SimpleSlider object
@@ -40,5 +41,6 @@ slider.images = [
 
 slider.Show(); // Show the slider
 ```
-
+#
+### Preview
 ![Image example](https://i.imgur.com/8d3uUmG.jpg)
