@@ -10,6 +10,7 @@ function SimpleSlider() {
     this.Auto = true;
     this.PauseSlideOnMouseEntered = true;
     this.ArrowsVisible = true;
+    this.CenterScreen = true;
 
     this.SliderHeight = 800;
     this.SliderWidth = "100%";
@@ -108,6 +109,8 @@ function SimpleSlider() {
         self.sliderContainer.css({
             "width": self.SliderWidth
             ,"position": "relative"
+            ,"margin-left": "auto"
+            ,"margin-right": "auto"
         });
 
         $(".slider-dots").css({
@@ -203,6 +206,7 @@ function SimpleSlider() {
 
         $(this.container).find("img").css({
             "min-width": "100%"
+            ,"max-width": "110%"
         });
     }
 
@@ -213,8 +217,17 @@ function SimpleSlider() {
             if (self.DotsVisible && self.images.length > 1) {
                 self.sliderDots();
             }
-        
+
             self.addStyles();
+
+            self.contWidth = $(self.container).outerWidth(true);        
+
+            if (!self.CenterScreen) {
+                self.sliderContainer.css({
+                    "margin-left": "initial"
+                    ,"margin-right": "initial"
+                });
+            }
 
             if (self.ArrowsVisible) {
                 $(".arrow").css({
