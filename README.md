@@ -24,6 +24,7 @@ var slider = new SimpleSlider();
 
 slider.SliderHeight = 800;                // Sets the slider height :double
 slider.SliderWidth = "100%"               // Sets the slider width :string
+slider.SlideSpeed = 500                   // Animation speed :double
 slider.Auto = true;                       // Change slides automaticaly :bool
 slider.AutoSlideTime = 2000;              // Slider auto-slide delay (if set to auto) :double
 slider.PauseSlideOnMouseEntered = false;  // When mouse entered pause the slide (is set to auto) :bool
