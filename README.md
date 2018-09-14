@@ -1,5 +1,5 @@
 # SimpleSlider
-A simple slider javascript library
+A simple image slider javascript library
 #
 
 ### Getting started
