@@ -16,8 +16,28 @@
         </div>
     </div>
 
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/slider.js"></script>
+
+    <script>
+
+        var slider = new SimpleSlider();
+
+        slider.ContHeight = 800;
+        slider.AutoSlideTime = 2000;
+        slider.PauseSlideOnMouseEntered = false;
+        slider.Auto = true;
+        slider.DotsVisible = true;
+        slider.ArrowsVisible = true;
+
+        slider.images = [
+            "images/img-1.jpeg",
+            "images/img-3.jpeg",
+            "images/img-5.jpeg"
+        ];
+
+        slider.Show();
+        
+    </script>
 </body>
 </html>
