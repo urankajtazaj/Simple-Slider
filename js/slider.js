@@ -11,7 +11,7 @@ function SimpleSlider() {
     this.PauseSlideOnMouseEntered = true;
     this.ArrowsVisible = true;
 
-    this.ContHeight = 800;
+    this.SliderHeight = 800;
     this.SliderWidth = "100%";
     this.SlideSpeed = 500;
     this.AutoSlideTime = 5000;
@@ -144,7 +144,7 @@ function SimpleSlider() {
             ,"display": "inline-block"
             ,"height": "40px"
             ,"padding": "10px"
-            ,"margin-top": "calc(" + self.ContHeight + "px / 2 - 40px)"
+            ,"margin-top": "calc(" + self.SliderHeight + "px / 2 - 40px)"
             ,"display": "flex"
             ,"justify-content": "center"
             ,"align-items": "center"
@@ -192,7 +192,7 @@ function SimpleSlider() {
         })
 
        this.container.css({
-            "height": self.ContHeight + "px"
+            "height": self.SliderHeight + "px"
             ,"width": "100%"
             ,"margin": "auto"
             ,"display": "flex"
