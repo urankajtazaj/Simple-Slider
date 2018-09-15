@@ -31,12 +31,16 @@ slider.AutoSlideTime = 2000;              // Slider auto-slide delay (if set to 
 slider.PauseSlideOnMouseEntered = false;  // When mouse entered pause the slide (is set to auto) :bool
 slider.DotsVisible = true;                // Show dots at the bottom of the slide :bool
 slider.ArrowsVisible = true;              // Show/hide arrows :bool
+slider.CenterScreen = true                // Centers the slider (if slider width is not 100%) :bool
 
 // Set the slider images path
 slider.images = [
-    "images/img-1.jpeg",
-    "images/img-3.jpeg",
-    "images/img-5.jpeg"
+     "images/img-1.jpeg"
+    ,"images/img-2.jpeg"
+    ,"images/img-3.jpeg"
+    ,"images/img-4.jpeg"
+    ,"images/img-5.jpeg"
+    ,"images/img-6.jpeg"
 ];
 
 slider.Show(); // Show the slider
