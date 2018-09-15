@@ -7,7 +7,7 @@ function SimpleSlider() {
     var self = this;
 
     this.DotsVisible = true;
-    this.Auto = true;
+    this.Auto = false;
     this.PauseSlideOnMouseEntered = true;
     this.ArrowsVisible = true;
     this.CenterScreen = true;
@@ -24,10 +24,6 @@ function SimpleSlider() {
     this.container = $(".slider-container");
     this.contWidth = $(self.container)[0].getBoundingClientRect().width;
     this.currentIndex = 0;
-
-    $(".arrow").css({
-        "display": "none"
-    });
 
     self.nextImage = function() {
         if (self.currentIndex >= $(self.container).find("img").length - 1) {
@@ -151,6 +147,7 @@ function SimpleSlider() {
             ,"display": "flex"
             ,"justify-content": "center"
             ,"align-items": "center"
+            ,"display": "none"
             ,"cursor": "pointer"
         });
 
@@ -231,7 +228,7 @@ function SimpleSlider() {
 
             if (self.ArrowsVisible) {
                 $(".arrow").css({
-                    "display": "normal"
+                    "display": "initial"
                 });
             }
 
