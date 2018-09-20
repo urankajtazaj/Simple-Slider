@@ -24,6 +24,17 @@ function SimpleSlider() {
     this.container = $(".slider-container");
     this.contWidth = $(self.container)[0].getBoundingClientRect().width;
     this.currentIndex = 0;
+    this.sliderContainer.find(".container").css({
+        "max-width": "100%"
+        ,"padding": "0"
+    });
+
+    this.sliderContainer.prepend("<div class=\"img-preview\"><img src=\"\"></div>");
+
+    this.AddOverlay = function(title, description) {
+        self.container.append("<div class='overlay dark'></div>");
+        self.container.find(".overlay").append("<h2>Hello world</h2>");
+    }
 
     self.nextImage = function() {
         if (self.currentIndex >= $(self.container).find("img").length - 1) {
@@ -60,7 +71,7 @@ function SimpleSlider() {
 
     this.sliderDots = function() {
         self.sliderContainer.append("<div class='slider-dots'></div>");
-        for (var i = 0; i < self.images.length; i++) {
+        for (var i = 0; i < self.images.length-1; i++) {
             self.sliderContainer.find(".slider-dots").append("<span class='dot' data-index='" + i + "'></span>");
         }
 
@@ -95,28 +106,95 @@ function SimpleSlider() {
         self.prevImage();
     });
 
+    this.imgPreview = $(".img-preview");
+
+    this.mouseenter_handler = function() {
+        clearInterval(self.slideInterval);
+        console.log("ENTERED");
+    }
+
+    this.mouseleave_handler = function() {
+        self.slideInterval = setInterval(self.nextImage, self.AutoSlideTime);
+        console.log("EXITED");
+    }
+
+    this.imgPreview.click(function() {
+        $(this).css("display", "none");
+        self.sliderContainer.bind("mouseenter", self.mouseenter_handler)
+        self.sliderContainer.bind("mouseleave", self.mouseleave_handler);
+        self.sliderContainer.trigger("mouseleave");
+    });
+
+    this.previewImage = function(path) {
+        self.imgPreview.css("display", "flex");
+        self.imgPreview.find("img").attr("src", path);
+        self.sliderContainer.unbind("mouseleave");
+    }
+
     this.addImages = function() {
         self.images.forEach(imagePath => {
-            $(self.container).append("<img src='" + imagePath + "'/>");        
+            $(self.container).append("<div class='image-placeholder'><img src='" + imagePath + "'/></div>");        
+        });
+
+        $(".image-placeholder").find("img").each(function(i, el) {
+            var el = $(el);
+            el.click(function() {
+                self.previewImage($(this).attr("src"));
+            });
         });
     }
 
     this.addStyles = function() {
+        self.imgPreview.css({
+            "position": "fixed"
+            ,"width": "100vw"
+            ,"height": "100vh"
+            ,"z-index": "6"
+            ,"top": "0"
+            ,"left": "0"
+            ,"background-color": "rgba(0,0,0,0.7)"
+            ,"display": "none"
+            ,"justify-content": "center"
+            ,"align-items": "center"
+            ,"box-sizing": "border-box"
+            ,"padding": "10px"
+        });
+
+        self.imgPreview.find("img").css({
+            "max-width": "90%"
+            ,"max-height": "90%"
+            ,"z-index": "7"
+        });
+
+        self.container.find(".image-placeholder").css({
+            "display": "flex", 
+            "justify-content": "center", 
+            "align-items": "center", 
+            "min-width": "100%",
+            "height": "100%"
+        });
+
         self.sliderContainer.css({
             "width": self.SliderWidth
             ,"position": "relative"
             ,"margin-left": "auto"
             ,"margin-right": "auto"
+            //,"padding": "5px 10px"
+            //,"border": "1px solid #eee"
         });
 
         $(".slider-dots").css({
             "text-align": "center"
             ,"position": "absolute"
             ,"width": "100%"
+            ,"bottom": "5"
+            ,"padding": "10px 0 10px 0"
+            ,"left": "0"
+            ,"background": "linear-gradient(to right, transparent, rgba(0,0,0,0.5), transparent)"
         });
 
         $(".dot").css({
-            "margin": "-25px 5px 0 5px"
+            "margin": "0px 5px 0 5px"
             ,"display": "inline-block"
             ,"height": "12px"
             ,"width": "12px"
@@ -125,6 +203,7 @@ function SimpleSlider() {
             ,"z-index": "3"
             ,"cursor": "pointer"
             ,"transition": "150ms ease-in-out"
+            ,"box-shadow": "0 0 0 2px rgba(0, 0, 0, 0.3)"
         });
 
         $(".dot.current").css({
@@ -132,7 +211,7 @@ function SimpleSlider() {
             ,"box-shadow": "0 0 0 3px rgba(0, 0, 0, 0.5)"
         });
 
-        $(".container").css({
+        self.sliderContainer.find(".container").css({
             "position": "relative"
             ,"display": "flex"
             ,"justify-content": "space-between"
@@ -141,14 +220,17 @@ function SimpleSlider() {
         $(".arrow").css({
             "position": "absolute"
             ,"display": "inline-block"
-            ,"height": "40px"
+            ,"height": "55px"
             ,"padding": "10px"
-            ,"margin-top": "calc(" + self.SliderHeight + "px / 2 - 40px)"
+            ,"margin-top": "calc(" + self.SliderHeight + "px / 2 - 22px)"
             ,"display": "flex"
             ,"justify-content": "center"
             ,"align-items": "center"
             ,"display": "none"
             ,"cursor": "pointer"
+            ,"z-index": "5"
+            ,"background-color": "rgba(0, 0, 0, .4)"
+            ,"border-radius": "100%"
         });
 
         $(".arrow img").css({
@@ -191,7 +273,7 @@ function SimpleSlider() {
             }, 150);
         })
 
-       this.container.css({
+       self.container.css({
             "height": self.SliderHeight + "px"
             ,"width": "100%"
             ,"margin": "auto"
@@ -201,10 +283,22 @@ function SimpleSlider() {
             ,"overflow": "hidden"
         });
 
-        $(this.container).find("img").css({
-            "min-width": "100%"
-            ,"max-width": "110%"
+        $(self.container).find("img").css({
+            "max-width": "100%"
+            ,"max-height": "100%"
+            ,"cursor": "pointer"
         });
+
+        self.container.find(".overlay").css({
+            "background-color": "rgba(0,0,0,.5)"
+            ,"color": "#fff"
+            ,"position": "absolute"
+            ,"height": "100%"
+            ,"width": "100%"
+            ,"display": "flex"
+            ,"justify-content": "center"
+            ,"align-items": "center"
+        })
     }
 
     this.Show = function() {
@@ -237,17 +331,12 @@ function SimpleSlider() {
             }
 
             if (self.Auto && self.PauseSlideOnMouseEntered) {
-                self.sliderContainer.mouseenter(function() {
-                    clearInterval(self.slideInterval);
-                });
-        
-                self.sliderContainer.mouseleave(function() {
-                    self.slideInterval = setInterval(self.nextImage, self.AutoSlideTime);
-                });
+                self.sliderContainer.bind("mouseenter", self.mouseenter_handler)
+                self.sliderContainer.bind("mouseleave", self.mouseleave_handler);
             }
         } else {
             alert("Add images to the slider to continue");
         }
-
     };
+
 }
